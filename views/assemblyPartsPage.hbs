@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Assembly Parts</title>
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a href="/partsPage">Parts</a>
+        <a href="/vendorsPage">Vendors</a>
+        <a href="/assembliesPage">Assemblies</a>
+        <a class="active" href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a href="/employeesPage">Employees</a>
+        <a href="/ordersPage">Orders</a>
+        <a href="/orderPartsPage">Order-Parts Page</a>
+        
+    </div>
+    <h1>Add parts to assemblies</h1>
+</body>
+<fieldset>
+    <legend>Add a part to an assembly:</legend>
+    <form id="add-assem-part-form" method="POST" action="/add-assem-part-form">
+        <label for="assembly_id">Select the assembly id that the part should be added to:</label>
+        <select id="assembly_id" name="assembly_id" required>
+            <option value=""></option>
+            {{#each assembly_id}}
+            <option value="{{this.assembly_id}}">{{this.assembly_id}} {{this.assem_name}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <label for="part_id">Select the part id that will be added:</label>
+        <select id="part_id" name="part_id" required>
+            <option value=""></option>
+            {{#each part_id}}
+            <option value="{{this.part_id}}">{{this.part_id}} | {{this.part_name}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <label for="part_quantity>">Enter the part quantity to add to the assembly:</label>
+        <input type="number" name="part_quantity" min="1" required>
+        <br>
+        <input type="submit" value="Add Part">
+    </form>
+</fieldset>
+<table style="position:relative; top:10px">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.assembly_part_id}}</td>
+            <td>{{this.assembly_id}}</td>
+            <td>{{this.part_id}}</td>
+            <td>{{this.part_quantity}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</html>

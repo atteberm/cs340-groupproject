@@ -1,0 +1,114 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: calc(10px + 2vmin);
+	background-color: #212121;
+	color: rgb(154, 156, 153);
+	margin: 50px;
+	padding: 50px;
+}
+
+h1 {
+	font-family: Tahoma;
+	color: rgb(235, 235, 235);
+	text-align: center;
+	font-size: 40px;
+	position: relative;
+	top: -20px;
+}
+
+h2 {
+	font-family: Verdana;
+	color: #FFFFFF;
+	text-align: left;
+	position: absolute;
+	left: 20px;
+	top:-20px;
+}
+
+table {
+	color: rgb(241, 240, 239);
+	border-collapse: collapse;
+	margin-top: 0px;
+	table-layout: auto;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: calc(8px + 2vmin);
+}
+
+thead,
+th {
+	color: rgb(234, 236, 236);
+	background-color: rgb(112, 110, 110);
+	text-align: center;
+	padding: 10px;
+	margin: 0;
+	border: 4px solid black;
+}
+
+tbody,
+tr,
+td {
+	color: tan;
+	margin: 0;
+	border: 4px solid black;
+	text-align: center;
+}
+
+a:link {
+	color: rgb(55,118,161);
+}
+
+a:visited {
+	color: rgb(16,89,173);
+}
+
+ul {
+	list-style-type: none;
+	display: inline;
+}
+
+li {
+	display: inline;
+}
+
+fieldset {
+	position: relative;
+	top: 0px;
+	font-size: calc(10px + 2vmin);
+}
+
+legend {
+font-size: calc(10px + 2vmin);
+}
+
+label {
+	font-size: calc(5px + 2vmin);
+}
+
+.navBar {
+	background-color: #212121;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.navBar a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 22px;
+}
+
+.navBar a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.navBar a.active {
+	background-color: #ddd;
+	color: black;
+}

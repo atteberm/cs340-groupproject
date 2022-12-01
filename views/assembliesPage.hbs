@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Assemblies</title>
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a href="/partsPage">Parts</a>
+        <a href="/vendorsPage">Vendors</a>
+        <a class="active" href="/assembliesPage">Assemblies</a>
+        <a href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a href="/employeesPage">Employees</a>
+        <a href="/ordersPage">Orders</a>
+        <a href="/orderPartsPage">Order-Parts Page</a>
+        
+    </div>
+    <h1>Assemblies that used purchased parts</h1>
+    <fieldset>
+        <legend>Add a new assembly:</legend>
+        <form id="add-assembly-form" method="POST" action="/add-assembly-form">
+            <label for="assembly_num>">Enter a number for the assembly to be associated with:</label>
+            <input type="text" name="assembly_num" required pattern="[A-Z][A-Z]-[0-9][0-9][0-9]-[0-9][0-9][0-9]"
+                oninvalid="setCustomValidity('Please use the following format [A-Z][A-Z]-[0-9][0-9][0-9]-[0-9][0-9][0-9]')"
+                onchange="try{setCustomValidity('')}catch(e){}">
+            <br>
+            <label for="assem_name>">Enter a name for the assembly to be associated with:</label>
+            <input type="text" name="assem_name" placeholder="Not Required">
+            <br>
+            <input type="submit" value="Add Assembly">
+        </form>
+    </fieldset>
+    <table style="position:relative; top:10px">
+        <thead>
+            <tr>
+                {{#each data.[0]}}
+                <th>{{@key}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{this.assembly_id}}</td>
+                <td>{{this.assembly_num}}</td>
+                <td>{{this.assem_name}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Parts</title>
+
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a class="active" href="/partsPage">Parts</a>
+        <a href="/vendorsPage">Vendors</a>
+        <a href="/assembliesPage">Assemblies</a>
+        <a href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a href="/employeesPage">Employees</a>
+        <a href="/ordersPage">Orders</a>
+        <a href="/orderPartsPage">Order-Parts Page</a>
+        
+    </div>
+    <h1>Parts purchased from vendors</h1>
+</body>
+<fieldset>
+    <legend>Add a new part:</legend>
+    <form id="add-part-form" method="POST" action="/add-part-form">
+        <label for="vendor_id">Select the vendor who will supply the part:</label>
+        <select name="vendor_id" id="vendor_id" required>
+            <option value=""></option>
+            {{#each vendor_id}}
+            <option value="{{this.vendor_id}}">{{this.vendor_id}} | {{this.vendor_name}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <label for="vendor_num>">Enter the part number from the vendor's website:</label>
+        <input type="text" name="vendor_num" id="vendor_num" placeholder="Not Required">
+        <br>
+        <label for="part_name>">Enter the part name from the vendor's website:</label>
+        <input type="text" name="part_name" id="part_name" required>
+        <br>
+        <input type="submit" value="Add Part">
+    </form>
+
+</fieldset>
+<table style="position:relative; top:10px">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.part_id}}</td>
+            <td>{{this.vendor_id}}</td>
+            <td>{{this.vendor_num}}</td>
+            <td>{{this.part_name}}</td>
+            <td>{{this.inventory_quantity}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</html>

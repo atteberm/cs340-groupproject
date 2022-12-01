@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./js/delete_order.js"></script>
+    <script src="./js/search_orders.js"></script>
+    <title>Orders</title>
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a href="/partsPage">Parts</a>
+        <a href="/vendorsPage">Vendors</a>
+        <a href="/assembliesPage">Assemblies</a>
+        <a href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a href="/employeesPage">Employees</a>
+        <a class="active" href="/ordersPage">Orders</a>
+        <a href="/orderPartsPage">Order-Parts Page</a>
+        
+    </div>
+    <h1>Orders made by employees to vendors</h1>
+</body>
+<fieldset>
+    <legend>Instructions to create, update, or delete an order:</legend>
+    <label>Columns with entry fields can be used to search or update the table.
+        <br> order_num: Automatically populated during order creation, required for all search, update, and delete
+        functions
+        <br> order_date: Automatically populated with the date an order is created, cannot be NULL
+        <br> order_complete: Automatically populates to No, cannot be NULL
+        <br> employee_id: selected when a new order is created, cannot be NULL
+    </label>
+</fieldset>
+<form id="add-order-form" method="POST" action="/add-order-form">
+    <label for="employee_id">Select your Employee ID to create an order:</label>
+    <select id="employee_id" name="employee_id" required>
+        <option value=""></option>
+        {{#each employee_id}}
+        <option value="{{this.employee_id}}">{{this.employee_id}} | {{this.first_name}} {{this.last_name}}</option>
+        {{/each}}
+    </select>
+    <input type="submit" value="Create New Order">
+</form>
+<table id="orders-table" style="position:relative; top:10px">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+            <th>Filter/Modify</th>
+        </tr>
+        <tr>
+            <form id="update-order-form">
+                <td><input type="text" name="order_num"></td>
+                <td><input type="date" name="order_date"></td>
+                <td>
+                    <select id="order_complete" name="order_complete">
+                        <option value=""></option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="employee_id" name="employee_id">
+                        <option value=""></option>
+                        {{#each employee_id}}
+                        <option value="{{this.employee_id}}">{{this.employee_id}} | {{this.first_name}}
+                            {{this.last_name}}</option>
+                        {{/each}}
+                    </select>
+            </form>
+            </td>
+            <td><button onCLick="search_orders(`{{this.order_num}}`, `{{this.order_date}}`)">Search/Filter</button><a
+                    href="/ordersPage"><button>Clear</button></a>
+            </td>
+        </tr>
+    </thead>
+    <tbody id="orders-body">
+
+        {{#each data}}
+        <tr>
+            <td>{{this.order_num}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.order_complete}}</td>
+            <td>{{this.employee_id}}</td>
+            <td><button onClick="updateOrder(`{{this.order_num}}`)">Update</button><button
+                    onClick="deleteOrder({{this.order_num}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/update_order.js"></script>
+
+</html>

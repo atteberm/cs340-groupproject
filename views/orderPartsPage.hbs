@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./js/delete_order_part.js"></script>
+    <title>Order Parts</title>
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a href="/partsPage">Parts</a>
+        <a href="/vendorsPage">Vendors</a>
+        <a href="/assembliesPage">Assemblies</a>
+        <a href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a href="/employeesPage">Employees</a>
+        <a href="/ordersPage">Orders</a>
+        <a class="active" href="/orderPartsPage">Order-Parts Page</a>
+    </div>
+    <h1>Add parts to orders</h1>
+</body>
+<fieldset style="position:relative; top:0px">
+    <legend>Instructions to add, update, or delete parts on an order:</legend>
+    order_part_id: Automatically created when new parts are added to orders
+    <br> order_num: Used to search for an order to modify parts
+    <br> part_id: Used to add, update, and delete that specific part
+    <br> part_quantity: Used to set or change the amount of a given part on the specified order
+</fieldset>
+<table id="order-parts-table" style="position:relative; top:10px">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+            <th>Add/Modify Part</th>
+        </tr>
+        <tr>
+            <form id="add-order-part-form" method="POST" action="/add-order-part-form">
+                <td></td>
+                <td>
+                    <select name="order_num" id="order_id" required>
+                        <option value="">Select order_num</option>
+                        {{#each order_num}}
+                        <option value="{{this.order_num}}">{{this.order_num}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="part_id" name="part_id" required>
+                        <option value="">Select part_id</option>
+                        {{#each part_id}}
+                        <option value="{{this.part_id}}">{{this.part_id}} | {{this.part_name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td><input type="number" min="1" name="part_quantity" min="1" required></td>
+                <td><input type="submit" value="Add Part"></td>
+            </form>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.order_part_id}}</td>
+            <td>{{this.order_num}}</td>
+            <td>{{this.part_id}}</td>
+            <td>{{this.part_quantity}}</td>
+            <td><button onCLick="updateOrderPart({{this.order_part_id}})">Update</button><button
+                    onCLick="deleteOrderPart({{this.order_part_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/update_order_part.js"></script>
+
+</html>

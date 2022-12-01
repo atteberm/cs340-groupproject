@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Vendors</title>
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a href="/partsPage">Parts</a>
+        <a class="active" href="/vendorsPage">Vendors</a>
+        <a href="/assembliesPage">Assemblies</a>
+        <a href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a href="/employeesPage">Employees</a>
+        <a href="/ordersPage">Orders</a>
+        <a href="/orderPartsPage">Order-Parts Page</a>
+
+    </div>
+    <h1>Third party vendors that parts are purchased from</h1>
+</body>
+<fieldset>
+    <legend>Add a new vendor:</legend>
+    <form id="add-vendor-form" action="/add-vendor-form" method="POST">
+        <label for="vendor_name>">Enter the vendor's name:</label>
+        <input type="text" name="vendor_name" id="vendor_name" required>
+        <br>
+        <input type="submit" value="Add Vendor">
+    </form>
+</fieldset>
+<table style="position:relative; top:10px">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.vendor_id}}</td>
+            <td>{{this.vendor_name}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</html>

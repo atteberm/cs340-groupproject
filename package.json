@@ -1,0 +1,18 @@
+{
+  "name": "public_html",
+  "version": "1.0.0",
+  "description": "Database backend for part tracking",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Michael Kennedy, Matthew Attebery",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1"
+  }
+}

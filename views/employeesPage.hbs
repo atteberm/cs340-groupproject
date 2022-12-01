@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Employees</title>
+</head>
+
+<body>
+    <div class="navBar">
+        <a href="/">Home</a>
+        <a href="/partsPage">Parts</a>
+        <a href="/vendorsPage">Vendors</a>
+        <a href="/assembliesPage">Assemblies</a>
+        <a href="/assemblyPartsPage">Assembly-Parts Page</a>
+        <a class="active" href="/employeesPage">Employees</a>
+        <a href="/ordersPage">Orders</a>
+        <a href="/orderPartsPage">Order-Parts Page</a>
+        
+    </div>
+    <h1>Employee records with details</h1>
+</body>
+<fieldset>
+    <legend>Add a new employee</legend>
+    <form id="add-employee-form" method="POST" action="/add-employee-form">
+        <label for="first_name">Enter employee first name:</label>
+        <input type="text" name="first_name" required>
+        <br>
+        <label for="last_name">Enter employee last name:</label>
+        <input type="text" name="last_name" required>
+        <br>
+        <label for="email">Enter employee email address:</label>
+        <input type="text" name="email" placeholder="Not Required">
+        <br>
+        <label for="position">Select employee position:</label>
+        <select id="position" name="position">
+            <option value="" disabled selected hidden>Not Required</option>
+            <option value=""></option>
+            <option value="Accountant">Accountant</option>
+            <option value="Buyer">Buyer</option>
+            <option value="Drafter">Drafter</option>
+        </select>
+        <br>
+        <input type="submit" value="Add Employee">
+    </form>
+</fieldset>
+<table style="position:relative; top:10px">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.employee_id}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.position}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</html>
